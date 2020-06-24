@@ -33,6 +33,14 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <input type="password" name="confirm_password" id="password" class="form-control" placeholder="Confirm Password">
                             </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone Number">
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <input type="text" name="address" id="address" class="form-control" placeholder="Address">
+                            </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                                 <button type="submit" id="submit1" class="btn btn-light btn-radius btn-brd grd1 btn-block">Daftar</button>
                             </div>

@@ -22,6 +22,8 @@ class Register extends CI_Controller
         $email = $this->input->post('email');
         $password = md5($this->input->post('password'));
         $confirm_password = md5($this->input->post('confirm_password'));
+        $phone = $this->input->post('phone');
+        $address = $this->input->post('address');
 
         if ($password === $confirm_password) {
             $this->m_user->insert();
@@ -29,6 +31,8 @@ class Register extends CI_Controller
                 'id' => $this->m_user->get_last_row_id(),
                 'name' => $name,
                 'email' => $email,
+                'phone' => $phone,
+                'address' => $address,
                 'role' => 'user',
                 'authenticated' => TRUE
             );
