@@ -96,16 +96,24 @@
                     <div class="tab">
                         <b>Contact Info:</b>
                         <hr>
-                        <p>Atas Nama</p>
-                        <p><input value="<?= $user->name ?>" disabled></p>
-                        <p>No Telephon</p>
-                        <p><input value="<?= $user->phone ?>" disabled></p>
-                        <p>Alamat Tujuan</p>
-                        <p><input type="textbox" class="full" value="<?= $user->address ?>" name="deliver_address"></p>
+                        <div>
+                            <p>Atas Nama</p>
+                            <p><input class="full" value="<?= $user->name ?>" disabled></p>
+                        </div>
+                            <p>No Telephon</p>
+                            <p><input class="full" value="<?= $user->phone ?>" disabled></p>
+                        <div id="address-form">
+                            <p>Alamat Tujuan</p>
+                            <p><input type="textbox"class="full" value="<?= $user->address ?>" name="deliver_address"></p>
+                        </div>
                         <hr>
-                        <label for="by_seller"> Amanatkan ke penjual ?
-                            <input type="checkbox" id="by_seller" name="by_seller">
-                        </label>
+                        <!-- <div class="tooltip"> -->
+                        <h2 class="btn text-strong" data-toggle="tooltip" data-placement="top" 
+                        title="Hewan kurban akan diproses sepenuhnya oleh Barokah Kurban, dan akan diberikan kepada yang membutuhkan">
+                            <b>Amanatkan ke penjual ?</b>
+                        </h2>
+                        <input type="checkbox" id="by_seller" name="by_seller" onclick="changeState(this.checked)">
+                        <!-- </div> -->
                     </div>
 
                     <div class="tab">
@@ -163,5 +171,9 @@
     </div><!-- end row -->
 </div><!-- end container -->
 
-
 <script src="<?= base_url('assets/user/js/form-wizard.js'); ?>"></script>
+<script>
+    function changeState(isChecked) {
+        document.querySelector('#address-form').style.display = isChecked ? "none" : "block" ;
+    }
+</script>
