@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2020 at 04:55 PM
+-- Generation Time: Jun 25, 2020 at 04:20 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -46,8 +46,8 @@ CREATE TABLE `donations` (
 --
 
 INSERT INTO `donations` (`donate_id`, `user_id`, `livestock_id`, `recipient`, `quantity`, `date`, `finished`, `handled_by_seller`, `deliver_address`, `description`) VALUES
-(1, 4, 2, 'bubun', 2, '2020-05-30 20:34:02', 0, 1, 'jln juanda no 8 kec apa aja gang situ planet bekasi', 'first donation!'),
-(2, 4, 4, 'memet', 3, '2020-05-30 21:15:20', 0, 0, 'jjjlll apa apa aja lah', '2nd');
+(1, 4, 2, 'Hasbi', 1, '2020-06-25 09:12:58', 0, 0, 'Jl. Kp. Pulo Geulis No.10 RT.02/RW.04, Babakan Ps. Kecamatan Bogor Tengah Kota Bogor Jawa Barat 16126', 'Kontak saya bila sudah dikirim'),
+(2, 6, 6, 'Imas', 3, '2020-06-25 09:17:23', 0, 0, 'Jl. Langenastran Lor No.18 Panembahan Kecamatan Kraton Kota Yogyakarta Daerah Istimewa Yogyakarta 55131', 'Kontak saya bila bingung dengan alamatnya');
 
 -- --------------------------------------------------------
 
@@ -98,12 +98,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `livestock_id`, `quantity`, `date`, `finished`, `handled_by_seller`, `deliver_address`, `description`) VALUES
-(1, 2, 2, 2, '2020-04-05 11:04:31', 1, 0, NULL, 'Keduax !!!'),
-(2, 3, 2, 1, '2020-04-05 11:04:31', 0, 1, NULL, 'Ayy lmao'),
-(3, 2, 6, 2, '2020-04-05 11:05:02', 0, 0, NULL, NULL),
-(4, 4, 1, 3, '2020-05-10 14:11:18', 0, 0, 'bumi', 'yes yes yes'),
-(5, 4, 4, 7, '2020-05-10 14:12:51', 0, 1, 'bumi', 'thats alot of sheep'),
-(6, 4, 4, 1, '2020-05-30 17:08:02', 0, 0, 'bumi', '');
+(1, 3, 1, 2, '2020-06-25 09:10:10', 0, 0, 'Jl. Baiduri Bulan 37-36 RT.1/RW.11, Kp. Melayu Kecamatan Jatinegara Kota Jakarta Timur Daerah Khusus Ibukota Jakarta 13330', ''),
+(2, 5, 4, 3, '2020-06-25 09:14:50', 0, 0, 'Jl. Singotoro II Jomblang Kec. Candisari Kota Semarang Jawa Tengah 50256', 'kontak 2 : 081254338987'),
+(3, 6, 5, 2, '2020-06-25 09:15:42', 0, 0, 'Jl. Seruling 7 No.8 RT.011/RW.07, Jatirasa Kec. Jatiasih Kota Bks Jawa Barat 17424', 'terima kasih');
 
 -- --------------------------------------------------------
 
@@ -128,11 +125,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `photo`, `password`, `role`) VALUES
 (1, 'Admin', 'admin', NULL, NULL, NULL, '21232f297a57a5a743894a0e4a801fc3', 'admin'),
-(2, 'First User', 'user@gmail.com', '0853456789', 'Jl. Somewhere No.One Kota Sebelah', 'photo_2.png', 'ee11cbb19052e40b07aac0ca060c23ee', 'user'),
-(3, 'Test Dummy', 'user2@gmail.com', '081234567', 'Jl. Cibiru No 123 Kota Bandung', NULL, 'ee11cbb19052e40b07aac0ca060c23ee', 'user'),
-(4, 'ahmad', 'ahmad@email.com', '081234567890', 'bumi', NULL, '61243c7b9a4022cb3f8dc3106767ed12', 'user'),
-(5, 'ilham', 'ilham@gmail.com', NULL, NULL, NULL, 'b63d204bf086017e34d8bd27ab969f28', 'user'),
-(6, 'aldi', 'aldi@email.com', NULL, NULL, NULL, '5cf15fc7e77e85f5d525727358c0ffc9', 'user');
+(2, 'Test Dummy', 'user@gmail.com', '085345678965', 'Jl. Somewhere No.One Kota Sebelah', NULL, 'ee11cbb19052e40b07aac0ca060c23ee', 'user'),
+(3, 'Deni', 'deni@gmail.com', '081435221095', 'Jl. Baiduri Bulan 37-36 RT.1/RW.11, Kp. Melayu Kecamatan Jatinegara Kota Jakarta Timur Daerah Khusus Ibukota Jakarta 13330', NULL, '43f41d127a81c54d4c8f5f93daeb7118', 'user'),
+(4, 'Aldi', 'aldi@gmail.com', '082137866546', 'Jl. Ibu Inggit Garnasih 66 Ciateul Kec. Regol Kota Bandung Jawa Barat 40252', NULL, '5cf15fc7e77e85f5d525727358c0ffc9', 'user'),
+(5, 'Risa', 'risa@gmail.com', '083345634221', 'Jl. Singotoro II Jomblang Kec. Candisari Kota Semarang Jawa Tengah 50256', NULL, '735c9c3675eaba16bfbec5913174067e', 'user'),
+(6, 'Ahmad', 'ahmad@gmail.com', '081767212098', 'Jl. Seruling 7 No.8 RT.011/RW.07, Jatirasa Kec. Jatiasih Kota Bks Jawa Barat 17424', NULL, '61243c7b9a4022cb3f8dc3106767ed12', 'user');
 
 --
 -- Indexes for dumped tables
@@ -174,7 +171,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `donations`
 --
 ALTER TABLE `donations`
-  MODIFY `donate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `donate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `livestocks`
@@ -186,13 +183,13 @@ ALTER TABLE `livestocks`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables

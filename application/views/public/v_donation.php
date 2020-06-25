@@ -116,6 +116,26 @@
                         </p>
                     </div>
 
+                    <div class="tab">
+                        <b>Silahkan Transfer Pembayaran Rekening Berikut</b>
+                        <div class="container">
+                            <div class="row text-center">
+                                <div class="col-md-6 col-lg-6 col-sm-6">
+                                    <div class="panel panel-default card-input">
+                                        <div class="panel-heading">Bank BRI</div>
+                                        <div class="panel-body">
+                                            <img src="<?= base_url('uploads/rek.png') ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        Lalu mengirim bukti pembayaran ke
+                        <b><a href="mailto:barokah@qurban.com">Email Barokah Qurban</a></b>
+                        </p>
+                    </div>
+
                     <!-- <div class="tab">Login Info:
                         <p><input placeholder="Username..." oninput="this.className = ''"></p>
                         <p><input placeholder="Password..." oninput="this.className = ''"></p>
@@ -129,6 +149,7 @@
                     </div>
 
                     <div style="text-align:center;margin-top:40px;">
+                        <span class="step"></span>
                         <span class="step"></span>
                         <span class="step"></span>
                         <span class="step"></span>
