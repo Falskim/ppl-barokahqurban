@@ -90,7 +90,7 @@
                         <hr>
                         <b>Silahkan Masukan Jumlah</b>
                         <hr>
-                        <p><input name="quantity" class="full" placeholder="Quantity"></p>
+                        <p><input type="number" min="1" name="quantity" class="full" placeholder="Quantity"></p>
                     </div>
 
                     <div class="tab">
