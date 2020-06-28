@@ -35,7 +35,7 @@ class Donates extends CI_Controller
     function store()
     {
         $_POST['user_id'] = $this->userID;
-        $_POST['handled_by_seller'] = isset($_POST['by_seller']);
+        $_POST['handled_by_seller'] = $_POST['by_seller'];
         $this->m_donate->insert();
         redirect('home');
     }
