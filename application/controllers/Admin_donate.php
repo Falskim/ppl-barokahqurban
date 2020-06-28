@@ -42,4 +42,9 @@ class Admin_donate extends Admin
         $this->m_donate->mark_finished($id);
         redirect('admin_donate');
     }
+
+    function change_state($id) {
+        $this->m_donate->change_state($id, $_POST["state"]);
+        redirect('admin_donate');
+    }
 }

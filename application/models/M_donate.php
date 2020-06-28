@@ -79,6 +79,19 @@ class M_donate extends CI_Model
         }
     }
 
+    public function change_state($id, $state) {
+        $data = array(
+            'status' => $state,
+        );
+        
+        if($id==0){
+            return $this->db->insert('donations', $data);
+        } else {
+            $this->db->where('donate_id', $id);
+            return $this->db->update('donations', $data);
+        }        
+    }
+
     function delete($id)
     {
         return $this->db->delete('donations', array('donate_id' => $id));

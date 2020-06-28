@@ -21,7 +21,7 @@
                                 <th>Quantity</th>
                                 <th>Date</th>
                                 <th>Handled By Seller</th>
-                                <th>Finished</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -45,13 +45,19 @@
                                         <?php endif; ?>
                                     </td>
                                     <td class="text-white">
-                                        <?php if ($donate->finished) : ?>
-                                            <a type="button" class="btn btn-success">Selesai</a>
-                                        <?php else : ?>
-                                            <a type="button" class="btn btn-warning">Dalam Proses</a>
-                                        <?php endif; ?>
+                                        <?php if($donate->status == 'pending'):?>
+                                            <a type="button" class="btn btn-block btn-warning">Pending</a>
+                                        <?php elseif($donate->status == 'deliver'):?>
+                                            <a type="button" class="btn btn-block btn-primary">Sedang Diantar</a>
+                                        <?php elseif($donate->status == 'cancelled'):?>
+                                            <a type="button" class="btn btn-block btn-danger">Dibatalkan</a>
+                                        <?php elseif($donate->status == 'success'):?>
+                                            <a type="button" class="btn btn-block btn-success">Selesai</a>
+                                        <?php else:?>
+                                            <a type="button" class="btn btn-block btn-danger">Error</a>
+                                        <?php endif;?>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <form method="DELETE" action="<?= site_url('admin_donate/delete/' . $donate->donate_id); ?>">
                                             <a class="btn btn-info" href="<?= site_url('admin_donate/show/' . $donate->donate_id) ?>"> Check</a>
                                             <button type="submit" class="btn btn-danger"> Delete</button>

@@ -19,8 +19,7 @@
                                 <th>Livestock</th>
                                 <th>Quantity</th>
                                 <th>Date</th>
-                                <th>Handled By Seller</th>
-                                <th>Finished</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -35,21 +34,20 @@
                                 <td><?= $order->category; ?></td>
                                 <td><?= $order->quantity; ?></td>
                                 <td><?= date("Y-m-d",strtotime($order->date)); ?></td>
-                                <td class="text-white"> 
-                                    <?php if($order->handled_by_seller):?>
-                                        <a type="button" class="btn btn-success">Ya</a>
-                                    <?php else:?>
-                                        <a type="button" class="btn btn-info">Tidak</a>
-                                    <?php endif;?>
-                                </td>
                                 <td class="text-white">
-                                    <?php if($order->finished):?>
-                                        <a type="button" class="btn btn-success">Selesai</a>
+                                    <?php if($order->status == 'pending'):?>
+                                        <a type="button" class="btn btn-block btn-warning">Pending</a>
+                                    <?php elseif($order->status == 'deliver'):?>
+                                        <a type="button" class="btn btn-block btn-primary">Sedang Diantar</a>
+                                    <?php elseif($order->status == 'cancelled'):?>
+                                        <a type="button" class="btn btn-block btn-danger">Dibatalkan</a>
+                                    <?php elseif($order->status == 'success'):?>
+                                        <a type="button" class="btn btn-block btn-success">Selesai</a>
                                     <?php else:?>
-                                        <a type="button" class="btn btn-warning">Dalam Proses</a>
+                                        <a type="button" class="btn btn-block btn-danger">Error</a>
                                     <?php endif;?>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                 <form method="DELETE" action="<?= site_url('admin_order/delete/'.$order->order_id);?>">
                                     <a class="btn btn-info" href="<?= site_url('admin_order/show/'.$order->order_id) ?>"> Check</a>
                                     <button type="submit" class="btn btn-danger"> Delete</button>
@@ -59,20 +57,6 @@
                         <?php } ?>
                         </tbody>
                         <!-- END TABLE BODY -->
-
-                        <tfoot>
-                            <tr>
-                                <th>#</th>
-                                <!-- <th>Order ID</th> -->
-                                <th>User</th>
-                                <th>Livestock</th>
-                                <th>Quantity</th>
-                                <th>Date</th>
-                                <th>Handled By Seller</th>
-                                <th>Finished</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
 

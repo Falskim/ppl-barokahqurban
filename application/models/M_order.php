@@ -71,6 +71,19 @@ class M_order extends CI_Model{
         }        
     }
 
+    public function change_state($id, $state) {
+        $data = array(
+            'status' => $state,
+        );
+        
+        if($id==0){
+            return $this->db->insert('orders', $data);
+        } else {
+            $this->db->where('order_id', $id);
+            return $this->db->update('orders', $data);
+        }        
+    }
+
     function delete($id) {
         return $this->db->delete('orders', array('order_id' => $id));
     }

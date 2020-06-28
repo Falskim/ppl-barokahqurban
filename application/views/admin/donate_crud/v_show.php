@@ -19,10 +19,6 @@
                     <div class="pull-left">
                         <address>
                             <h3> &nbsp;<b class="text-danger">Baroqah Qurban</b></h3>
-                            <p class="text-muted m-l-5"> --Adress--
-                                <br /> --Adress--
-                                <br /> --Adress--
-                                <br /> --Adress--</p>
                         </address>
                     </div>
                     <div class="pull-right text-right">
@@ -90,11 +86,17 @@
 
                 <div class="container mt-3">
                     <h4>Status</h4>
-                    <?php if ($donate->finished) : ?>
-                        <button type="button" class="btn btn-success btn-lg">Selesai Diproses</button>
+                    <?php if ($donate->status == 'pending') : ?>
+                        <a type="button" class="btn btn-block btn-warning text-white">Pending</a>
+                    <?php elseif ($donate->status == 'deliver') : ?>
+                        <a type="button" class="btn btn-block btn-primary text-white">Sedang Diantar</a>
+                    <?php elseif ($donate->status == 'cancelled') : ?>
+                        <a type="button" class="btn btn-block btn-danger text-white">Dibatalkan</a>
+                    <?php elseif ($donate->status == 'success') : ?>
+                        <a type="button" class="btn btn-block btn-success text-white">Selesai</a>
                     <?php else : ?>
-                        <button type="button" class="btn btn-warning btn-lg">Dalam Proses</button>
-                    <?php endif ?>
+                        <a type="button" class="btn btn-block btn-danger text-white">Error</a>
+                    <?php endif; ?>
                 </div>
 
                 <div class="col-md-12">
@@ -109,13 +111,25 @@
                     <div class="clearfix"></div>
                     <hr>
 
-                    <form method="POST" action="<?= site_url('admin_donate/mark_finished/' . $donate->donate_id) ?>">
-                        <div class="text-right">
-                            <button class="btn btn-danger" type="submit"> Tandai Selesai </button>
-                        </div>
-                    </form>
+                    <?php if($donate->status != 'success' && $donate->status != 'cancelled'):?>
+                        <form id="stateForm" method="POST" action="<?= site_url('admin_donate/change_state/'.$donate->donate_id) ?>">
+                            <div class="text-right text-white">
+                                <a class="btn btn-primary" onclick="changeState('deliver')"> Tandai Sedang Diantar </a>
+                                <a class="btn btn-success" onclick="changeState('success')"> Tandai Selesai </a>
+                                <a class="btn btn-danger" onclick="changeState('cancelled')"> Tandai Dibatalkan </a>
+                                <input type="text" id="stateInput" name="state" style="display: none;"></input>
+                            </div>
+                        </form>
+                    <?php endif;?>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function changeState(state) {
+        document.querySelector("#stateInput").value = state;
+        document.querySelector("#stateForm").submit();
+    }
+</script>

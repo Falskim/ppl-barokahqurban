@@ -31,8 +31,8 @@ class Admin_order extends Admin {
         redirect('admin_order');
     }
 
-    function mark_finished($id) {
-        $this->m_order->mark_finished($id);
+    function change_state($id) {
+        $this->m_order->change_state($id, $_POST["state"]);
         redirect('admin_order');
     }
 

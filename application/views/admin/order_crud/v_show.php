@@ -19,11 +19,6 @@
                     <div class="pull-left">
                         <address>
                             <h3> &nbsp;<b class="text-danger">Baroqah Qurban</b></h3>
-                            <p class="text-muted m-l-5"> --Adress--
-                                <br/> --Adress--
-                                <br/> --Adress--
-                                <br/> --Adress--</p>
-                        </address>
                     </div>
                     <div class="pull-right text-right">
                         <address>
@@ -66,11 +61,7 @@
                     <h4>Alamat Tujuan</h4>
                     <hr>
                     <p class="font-bold">
-                        <?php if($order->handled_by_seller): ?>
-                            <button type="button" class="btn btn-warning btn-lg">Diserahkan Ke Penjual</button>
-                        <?php else: ?>
-                            <p class="text-muted m-l-5"><?= $order->deliver_address ?></p>
-                        <?php endif ?>
+                        <p class="text-muted m-l-5"><?= $order->deliver_address ?></p>
                     </p> 
                 </div>
                 
@@ -88,11 +79,17 @@
 
                 <div class="container mt-3">
                     <h4>Status</h4>
-                    <?php if($order->finished): ?>
-                        <button type="button" class="btn btn-success btn-lg">Selesai Diproses</button>
-                    <?php else: ?>
-                        <button type="button" class="btn btn-warning btn-lg">Dalam Proses</button>
-                    <?php endif ?>
+                    <?php if($order->status == 'pending'):?>
+                        <a type="button" class="btn btn-block btn-warning text-white">Pending</a>
+                    <?php elseif($order->status == 'deliver'):?>
+                        <a type="button" class="btn btn-block btn-primary text-white">Sedang Diantar</a>
+                    <?php elseif($order->status == 'cancelled'):?>
+                        <a type="button" class="btn btn-block btn-danger text-white">Dibatalkan</a>
+                    <?php elseif($order->status == 'success'):?>
+                        <a type="button" class="btn btn-block btn-success text-white">Selesai</a>
+                    <?php else:?>
+                        <a type="button" class="btn btn-block btn-danger text-white">Error</a>
+                    <?php endif;?>
                 </div>
                 
                 <div class="col-md-12">
@@ -106,14 +103,26 @@
                     </div>
                     <div class="clearfix"></div>
                     <hr>
-                    
-                    <form method="POST" action="<?= site_url('admin_order/mark_finished/'.$order->order_id) ?>">
-                    <div class="text-right">
-                        <button class="btn btn-danger" type="submit"> Tandai Selesai </button>
-                    </div>
-                    </form>
+
+                    <?php if($order->status != 'success' && $order->status != 'cancelled'):?>
+                        <form id="stateForm" method="POST" action="<?= site_url('admin_order/change_state/'.$order->order_id) ?>">
+                            <div class="text-right text-white">
+                                <a class="btn btn-primary" onclick="changeState('deliver')"> Tandai Sedang Diantar </a>
+                                <a class="btn btn-success" onclick="changeState('success')"> Tandai Selesai </a>
+                                <a class="btn btn-danger" onclick="changeState('cancelled')"> Tandai Dibatalkan </a>
+                                <input type="text" id="stateInput" name="state" style="display: none;"></input>
+                            </div>
+                        </form>
+                    <?php endif;?>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function changeState(state) {
+        document.querySelector("#stateInput").value = state;
+        document.querySelector("#stateForm").submit();
+    }
+</script>

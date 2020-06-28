@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2020 at 04:20 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.11
+-- Generation Time: Jun 27, 2020 at 06:26 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,22 +32,24 @@ CREATE TABLE `donations` (
   `donate_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `livestock_id` int(11) NOT NULL,
-  `recipient` varchar(50) NOT NULL,
+  `recipient` varchar(50) DEFAULT NULL,
   `quantity` int(11) NOT NULL,
-  `date` datetime NOT NULL DEFAULT current_timestamp(),
-  `finished` tinyint(1) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` enum('pending','deliver','cancelled','success') NOT NULL DEFAULT 'pending',
   `handled_by_seller` tinyint(1) NOT NULL,
-  `deliver_address` text DEFAULT NULL,
-  `description` text DEFAULT NULL
+  `deliver_address` text,
+  `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `donations`
 --
 
-INSERT INTO `donations` (`donate_id`, `user_id`, `livestock_id`, `recipient`, `quantity`, `date`, `finished`, `handled_by_seller`, `deliver_address`, `description`) VALUES
-(1, 4, 2, 'Hasbi', 1, '2020-06-25 09:12:58', 0, 0, 'Jl. Kp. Pulo Geulis No.10 RT.02/RW.04, Babakan Ps. Kecamatan Bogor Tengah Kota Bogor Jawa Barat 16126', 'Kontak saya bila sudah dikirim'),
-(2, 6, 6, 'Imas', 3, '2020-06-25 09:17:23', 0, 0, 'Jl. Langenastran Lor No.18 Panembahan Kecamatan Kraton Kota Yogyakarta Daerah Istimewa Yogyakarta 55131', 'Kontak saya bila bingung dengan alamatnya');
+INSERT INTO `donations` (`donate_id`, `user_id`, `livestock_id`, `recipient`, `quantity`, `date`, `status`, `handled_by_seller`, `deliver_address`, `description`) VALUES
+(1, 4, 2, 'Hasbi', 1, '2020-06-25 09:12:58', 'pending', 0, 'Jl. Kp. Pulo Geulis No.10 RT.02/RW.04, Babakan Ps. Kecamatan Bogor Tengah Kota Bogor Jawa Barat 16126', 'Kontak saya bila sudah dikirim'),
+(2, 6, 6, 'Imas', 3, '2020-06-25 09:17:23', 'deliver', 0, 'Jl. Langenastran Lor No.18 Panembahan Kecamatan Kraton Kota Yogyakarta Daerah Istimewa Yogyakarta 55131', 'Kontak saya bila bingung dengan alamatnya'),
+(6, 6, 6, 'Falskim', 3, '2020-06-25 09:17:23', 'cancelled', 0, 'Jl. Langenastran Lor No.18 Panembahan Kecamatan Kraton Kota Yogyakarta Daerah Istimewa Yogyakarta 55131', 'Kontak saya bila bingung dengan alamatnya'),
+(7, 4, 1, 'Junior', 1, '2020-06-25 09:12:58', 'success', 0, 'Jl. Kp. Pulo Geulis No.10 RT.02/RW.04, Babakan Ps. Kecamatan Bogor Tengah Kota Bogor Jawa Barat 16126', 'Kontak saya bila sudah dikirim');
 
 -- --------------------------------------------------------
 
@@ -59,7 +61,7 @@ CREATE TABLE `livestocks` (
   `id` int(11) NOT NULL,
   `category` varchar(50) NOT NULL,
   `price` int(11) NOT NULL,
-  `available` tinyint(1) NOT NULL DEFAULT 1,
+  `available` tinyint(1) NOT NULL DEFAULT '1',
   `image` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -86,21 +88,21 @@ CREATE TABLE `orders` (
   `user_id` int(11) NOT NULL,
   `livestock_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `date` datetime NOT NULL DEFAULT current_timestamp(),
-  `finished` tinyint(1) NOT NULL DEFAULT 0,
-  `handled_by_seller` tinyint(1) NOT NULL DEFAULT 0,
-  `deliver_address` text DEFAULT NULL,
-  `description` text DEFAULT NULL
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` enum('pending','deliver','cancelled','success') NOT NULL DEFAULT 'pending',
+  `deliver_address` text,
+  `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `user_id`, `livestock_id`, `quantity`, `date`, `finished`, `handled_by_seller`, `deliver_address`, `description`) VALUES
-(1, 3, 1, 2, '2020-06-25 09:10:10', 0, 0, 'Jl. Baiduri Bulan 37-36 RT.1/RW.11, Kp. Melayu Kecamatan Jatinegara Kota Jakarta Timur Daerah Khusus Ibukota Jakarta 13330', ''),
-(2, 5, 4, 3, '2020-06-25 09:14:50', 0, 0, 'Jl. Singotoro II Jomblang Kec. Candisari Kota Semarang Jawa Tengah 50256', 'kontak 2 : 081254338987'),
-(3, 6, 5, 2, '2020-06-25 09:15:42', 0, 0, 'Jl. Seruling 7 No.8 RT.011/RW.07, Jatirasa Kec. Jatiasih Kota Bks Jawa Barat 17424', 'terima kasih');
+INSERT INTO `orders` (`order_id`, `user_id`, `livestock_id`, `quantity`, `date`, `status`, `deliver_address`, `description`) VALUES
+(1, 3, 1, 2, '2020-06-25 09:10:10', 'pending', 'Jl. Baiduri Bulan 37-36 RT.1/RW.11, Kp. Melayu Kecamatan Jatinegara Kota Jakarta Timur Daerah Khusus Ibukota Jakarta 13330', ''),
+(2, 5, 4, 3, '2020-06-25 09:14:50', 'deliver', 'Jl. Singotoro II Jomblang Kec. Candisari Kota Semarang Jawa Tengah 50256', 'kontak 2 : 081254338987'),
+(3, 6, 5, 2, '2020-06-25 09:15:42', 'cancelled', 'Jl. Seruling 7 No.8 RT.011/RW.07, Jatirasa Kec. Jatiasih Kota Bks Jawa Barat 17424', 'terima kasih'),
+(12, 2, 5, 2, '2020-06-25 09:15:42', 'success', 'Jl. Seruling 7 No.8 RT.011/RW.07, Jatirasa Kec. Jatiasih Kota Bks Jawa Barat 17424', 'terima kasih');
 
 -- --------------------------------------------------------
 
@@ -113,8 +115,8 @@ CREATE TABLE `users` (
   `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `phone` varchar(15) DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `photo` text DEFAULT NULL,
+  `address` text,
+  `photo` text,
   `password` varchar(50) NOT NULL,
   `role` enum('admin','user') NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -171,7 +173,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `donations`
 --
 ALTER TABLE `donations`
-  MODIFY `donate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `donate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `livestocks`
@@ -183,7 +185,7 @@ ALTER TABLE `livestocks`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -194,6 +196,13 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `donations`
+--
+ALTER TABLE `donations`
+  ADD CONSTRAINT `donations_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `donations_ibfk_2` FOREIGN KEY (`livestock_id`) REFERENCES `livestocks` (`id`);
 
 --
 -- Constraints for table `orders`
