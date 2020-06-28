@@ -59,11 +59,7 @@
                             <h4>Alamat Tujuan</h4>
                             <hr>
                             <p class="font-bold">
-                                <?php if ($order->handled_by_seller) : ?>
-                                    <button type="button" class="btn btn-warning btn-lg">Diserahkan Ke Penjual</button>
-                                <?php else : ?>
-                                    <p class="text-muted m-l-5"><?= $order->deliver_address ?></p>
-                                <?php endif ?>
+                                <p class="text-muted m-l-5"><?= $order->deliver_address ?></p>
                             </p>
                         </div>
 
@@ -81,11 +77,17 @@
 
                         <div class="container" style="margin-top:50px;">
                             <h4>Status</h4>
-                            <?php if ($order->finished) : ?>
-                                <button type="button" class="btn btn-success btn-lg">Selesai Diproses</button>
-                            <?php else : ?>
-                                <button type="button" class="btn btn-warning btn-lg">Dalam Proses</button>
-                            <?php endif ?>
+                            <?php if($order->status == 'pending'):?>
+                                <a type="button" class="btn btn-block btn-warning text-white">Pending</a>
+                            <?php elseif($order->status == 'deliver'):?>
+                                <a type="button" class="btn btn-block btn-primary text-white">Sedang Diantar</a>
+                            <?php elseif($order->status == 'cancelled'):?>
+                                <a type="button" class="btn btn-block btn-danger text-white">Dibatalkan</a>
+                            <?php elseif($order->status == 'success'):?>
+                                <a type="button" class="btn btn-block btn-success text-white">Selesai</a>
+                            <?php else:?>
+                                <a type="button" class="btn btn-block btn-danger text-white">Error</a>
+                            <?php endif;?>
                         </div>
 
                         <div class="col-md-12">
