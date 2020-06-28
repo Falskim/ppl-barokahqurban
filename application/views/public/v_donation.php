@@ -58,6 +58,37 @@
                 <h1 class="text-center">Buat Donasi</h1>
                 <form id="regForm" method="post" action="<?= site_url('donates/store') ?>">
                     <div class="tab">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                                <label class="text-center">
+                                    <input type="radio" name="by_seller" class="card-input-element" value="true" onclick="changeStateRecipient(true)"/>
+                                    <div class="panel panel-default card-input">
+                                        <div class="panel-heading"><b>Barokah Qurban</b></div>
+                                        <div class="panel-body">
+                                            <img src="https://statik.tempo.co/data/2020/04/14/id_930638/930638_720.jpg" width="150pt" height="auto">
+                                            <hr>
+                                            <p><i>Hewan kurban yang didonasikan akan diproses yang diurus oleh Barokah Qurban</i></p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                                <label class="text-center">
+                                    <input type="radio" name="by_seller" class="card-input-element" value="false" onclick="changeStateRecipient(false)"/>
+                                    <div class="panel panel-default card-input">
+                                        <div class="panel-heading"><b>Kepada Orang Lain</b></div>
+                                        <div class="panel-body">
+                                            <img src="https://img.beritasatu.com/cache/beritasatu/910x580-2/201473491520.jpg" width="150pt" height="auto">
+                                            <hr>
+                                            <p><i>Hewan kurban yang didonasikan akan diberikan kepada orang yang ditujukan</i></p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab">
                         <b>Silahkan Pilih Hewan Qurban</b>
                         <hr>
                         <?php foreach ($livestocks as $key => $livestock) { ?>
@@ -98,16 +129,15 @@
                         <hr>
                         <p>Atas Nama</p>
                         <p><input value="<?= $user->name ?>" disabled></p>
-                        <p>Penerima Donasi</p>
-                        <p><input type="textbox" class="full" name="recipient" placeholder=""></p>
                         <p>No Telephon Donatur</p>
                         <p><input value="<?= $user->phone ?>" disabled></p>
-                        <p>Alamat Tujuan</p>
-                        <p><input type="textbox" class="full" name="deliver_address" placeholder=""></p>
+                        <div id="recipient-form">
+                            <p>Penerima Donasi</p>
+                            <p><input id="recipient-name" type="textbox" class="full" name="recipient" value=""></p>
+                            <p>Alamat Tujuan</p>
+                            <p><input id="recipient-address" type="textbox" class="full" name="deliver_address" value=""></p>
+                        </div>
                         <hr>
-                        <label for="by_seller"> Amanatkan ke penjual ?
-                            <input type="checkbox" id="by_seller" name="by_seller">
-                        </label>
                     </div>
 
                     <div class="tab">
@@ -122,7 +152,7 @@
                             <div class="row text-center">
                                 <div class="col-md-6 col-lg-6 col-sm-6">
                                     <div class="panel panel-default card-input">
-                                        <div class="panel-heading">Bank BRI</div>
+                                        <div class="panel-heading">Bank</div>
                                         <div class="panel-body">
                                             <img src="<?= base_url('uploads/rek.png') ?>">
                                         </div>
@@ -153,6 +183,7 @@
                         <span class="step"></span>
                         <span class="step"></span>
                         <span class="step"></span>
+                        <span class="step"></span>
                         <!-- <span class="step"></span> -->
                     </div>
                 </form>
@@ -167,3 +198,10 @@
 
 
 <script src="<?= base_url('assets/user/js/form-wizard.js'); ?>"></script>
+<script>
+    function changeStateRecipient(isBySeller) {
+        document.querySelector("#recipient-form").style.display = isBySeller ? "none" : "block";
+        document.querySelector("#recipient-name").value = isBySeller ? "Barokah Qurban" : "";
+        document.querySelector("#recipient-address").value = isBySeller ? "Barokah Qurban" : "";
+    }
+</script>

@@ -83,13 +83,13 @@
 
                         <div class="container" style="margin-top:50px;">
                             <h4>Status</h4>
-                            <?php if($order->status == 'pending'):?>
+                            <?php if($donate->status == 'pending'):?>
                                 <a type="button" class="btn btn-block btn-warning text-white">Pending</a>
-                            <?php elseif($order->status == 'deliver'):?>
+                            <?php elseif($donate->status == 'deliver'):?>
                                 <a type="button" class="btn btn-block btn-primary text-white">Sedang Diantar</a>
-                            <?php elseif($order->status == 'cancelled'):?>
+                            <?php elseif($donate->status == 'cancelled'):?>
                                 <a type="button" class="btn btn-block btn-danger text-white">Dibatalkan</a>
-                            <?php elseif($order->status == 'success'):?>
+                            <?php elseif($donate->status == 'success'):?>
                                 <a type="button" class="btn btn-block btn-success text-white">Selesai</a>
                             <?php else:?>
                                 <a type="button" class="btn btn-block btn-danger text-white">Error</a>
@@ -115,7 +115,7 @@
                                 <div class="row text-center">
                                     <div class="col-md-6 col-lg-6 col-sm-6">
                                         <div class="panel panel-default card-input">
-                                            <div class="panel-heading">Bank BRI</div>
+                                            <div class="panel-heading">Bank</div>
                                             <div class="panel-body">
                                                 <img src="<?= base_url('uploads/rek.png') ?>">
                                             </div>

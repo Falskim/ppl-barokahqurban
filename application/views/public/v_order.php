@@ -108,11 +108,11 @@
                         </div>
                         <hr>
                         <!-- <div class="tooltip"> -->
-                        <h2 class="btn text-strong" data-toggle="tooltip" data-placement="top" 
+                        <!-- <h2 class="btn text-strong" data-toggle="tooltip" data-placement="top" 
                         title="Hewan kurban akan diproses sepenuhnya oleh Barokah Kurban, dan akan diberikan kepada yang membutuhkan">
                             <b>Amanatkan ke penjual ?</b>
                         </h2>
-                        <input type="checkbox" id="by_seller" name="by_seller" onclick="changeState(this.checked)">
+                        <input type="checkbox" id="by_seller" name="by_seller" onclick="changeState(this.checked)"> -->
                         <!-- </div> -->
                     </div>
 
@@ -128,7 +128,7 @@
                             <div class="row text-center">
                                 <div class="col-md-6 col-lg-6 col-sm-6">
                                     <div class="panel panel-default card-input">
-                                        <div class="panel-heading">Bank BRI</div>
+                                        <div class="panel-heading">Bank</div>
                                         <div class="panel-body">
                                             <img src="<?= base_url('uploads/rek.png') ?>">
                                         </div>

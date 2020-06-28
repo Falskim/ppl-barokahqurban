@@ -109,7 +109,7 @@
                                 <div class="row text-center">
                                     <div class="col-md-6 col-lg-6 col-sm-6">
                                         <div class="panel panel-default card-input">
-                                            <div class="panel-heading">Bank BRI</div>
+                                            <div class="panel-heading">Bank</div>
                                             <div class="panel-body">
                                                 <img src="<?= base_url('uploads/rek.png') ?>">
                                             </div>
